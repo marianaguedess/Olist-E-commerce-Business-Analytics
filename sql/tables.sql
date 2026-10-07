@@ -46,3 +46,14 @@ CREATE TABLE customer (
 
 ALTER TABLE customer ADD CONSTRAINT pk_customer PRIMARY KEY (customer_id);
 ALTER TABLE customer ADD CONSTRAINT fk_customer_zipcode FOREIGN KEY (customer_zip_code_prefix) REFERENCES zip_codes (zip_code)
+
+--tabela Vendedores
+CREATE TABLE seller (
+    seller_id                       VARCHAR(32) NOT NULL,
+    seller_zip_code_prefix          VARCHAR(10),
+    seller_city                     VARCHAR(100),
+    seller_state                    VARCHAR(100)
+)
+
+ALTER TABLE seller ADD CONSTRAINT pk_seller PRIMARY KEY (seller_id);
+ALTER TABLE seller ADD CONSTRAINT fk_seller_zipcode FOREIGN KEY (seller_zip_code_prefix) REFERENCES zip_codes (zip_code)
