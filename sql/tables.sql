@@ -34,3 +34,15 @@ ALTER TABLE geolocation ADD CONSTRAINT fk_geolocation_zip_code FOREIGN KEY (geol
     -- a coluna de chave primaria será criada pois carga da tabela
     ALTER TABLE geolocation ADD geolocation_id INT IDENTITY(1,1);
     ALTER TABLE geolocation ADD CONSTRAINT pk_geolocation PRIMARY KEY (geolocation_id);
+
+-- tabela clientes
+CREATE TABLE customer (
+    customer_id                     VARCHAR(32) NOT NULL,
+    customer_unique_id              VARCHAR(32),
+    customer_zip_code_prefix        VARCHAR(10),
+    customer_city                   VARCHAR(100),
+    customer_state                  VARCHAR(100)
+);
+
+ALTER TABLE customer ADD CONSTRAINT pk_customer PRIMARY KEY (customer_id);
+ALTER TABLE customer ADD CONSTRAINT fk_customer_zipcode FOREIGN KEY (customer_zip_code_prefix) REFERENCES zip_codes (zip_code)
