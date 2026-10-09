@@ -56,4 +56,19 @@ CREATE TABLE seller (
 )
 
 ALTER TABLE seller ADD CONSTRAINT pk_seller PRIMARY KEY (seller_id);
-ALTER TABLE seller ADD CONSTRAINT fk_seller_zipcode FOREIGN KEY (seller_zip_code_prefix) REFERENCES zip_codes (zip_code)
+ALTER TABLE seller ADD CONSTRAINT fk_seller_zipcode FOREIGN KEY (seller_zip_code_prefix) REFERENCES zip_codes (zip_code);
+
+CREATE TABLE orders (
+    order_id                        VARCHAR(32) NOT NULL,
+    customer_id                     VARCHAR(32),
+    order_status                    VARCHAR(20),
+    order_purchase_timestamp        DATETIME2,
+    order_approved_at               DATETIME2,
+    order_delivered_carrier_date    DATETIME2,
+    order_delivered_customer_date   DATETIME2,
+    order_estimated_delivery_date   DATETIME2
+)
+
+ALTER TABLE orders ADD CONSTRAINT pk_orders PRIMARY KEY (order_id);
+ALTER TABLE orders ADD CONSTRAINT fk_orders_customer FOREIGN KEY (customer_id) REFERENCES customer (customer_id);
+
